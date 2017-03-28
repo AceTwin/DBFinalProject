@@ -1,0 +1,83 @@
+DROP TABLE IF EXISTS Student;
+DROP TABLE IF EXISTS Professors;
+DROP TABLE IF EXISTS Classes;
+DROP TABLE IF EXISTS Room;
+DROP TABLE IF EXISTS Headmaster;
+DROP TABLE IF EXISTS Grades;
+DROP TABLE IF EXISTS Wand;
+DROP TABLE IF EXISTS House;
+DROP TABLE IF EXISTS Books;
+DROP TABLE IF EXISTS ExtraCurricular;
+
+CREATE TABLE Student (
+stuId NUMERIC(5) PRIMARY KEY,
+lastName VARCHAR2(20),
+firstName VARCHAR2(20),
+GPA DECIMAL(3,2),
+House VARCHAR2(20),
+Schedule VARCHAR2(3),
+FOREIGN KEY(House) REFERENCES House(HouseName),
+FOREIGN KEY(GPA) REFERENCES Grades(GPA));
+ 
+CREATE TABLE Professors (
+ProfID VARCHAR2(5) PRIMARY KEY,
+name VARCHAR2(20),
+subject VARCHAR2(20));
+ 
+CREATE TABLE Classes (
+classTitle VARCHAR2(25) PRIMARY KEY,
+ProfID VARCHAR2(5) NOT NULL,
+NumStud NUMBER(6),
+FOREIGN KEY(ProfID) REFERENCES Professors(ProfID));
+ 
+CREATE TABLE Room (
+RoomId VARCHAR2(5) PRIMARY KEY,
+classTaught VARCHAR2(25) NOT NULL,
+Condition VARCHAR2(25),
+FOREIGN KEY(classTaught) REFERENCES Classes(classTitle));
+
+CREATE TABLE Headmaster (
+Name VARCHAR2(25) PRIMARY KEY,
+start_date DATE,
+end_Date DATE,
+NumYears NUMBER(3));
+
+CREATE TABLE Grades (
+Semester VARCHAR2(20),
+GPA DECIMAL(3,2),
+stuId VARCHAR2(5),
+PRIMARY KEY (Semester, GPA),
+FOREIGN KEY(stuId) REFERENCES Students(stuId));
+
+CREATE TABLE Wand (
+WandId VARCHAR2(5) PRIMARY KEY,
+WCondition VARCHAR2(25),
+Core VARCHAR2(25),
+StudFName VARCHAR2(20),
+StudLName VARCHAR2(20),
+FOREIGN KEY(StudFName) REFERENCES Students(firstName),
+FOREIGN KEY(StudLName) REFERENCES Students(lastName));
+
+CREATE TABLE House (
+HouseName VARCHAR2(5) PRIMARY KEY,
+Mascot VARCHAR2(7),
+Location VARCHAR2(7));
+
+CREATE TABLE Books (
+bID VARCHAR2(5) PRIMARY KEY,
+classRequired VARCHAR2(25),
+NumPages NUMBER2(7),
+FOREIGN KEY(classRequired) REFERENCES Classes(classTitle));
+
+CREATE TABLE ExtraCurricular (
+Clubs VARCHAR2(25) PRIMARY KEY,
+Season VARCHAR2(7));
+
+INSERT INTO Student VALUES (9876, "Potter", "Harry", 3.7, "Gryffindor", "MWF");
+INSERT INTO Student VALUES (7643, "Lovegood", "Luna", 3.87, "Ravenclaw", "MWTH");
+INSERT INTO Student VALUES (4536, "Cornel", "Cara", 3.9, "Gryffindor", "TWF");
+INSERT INTO Professors VALUES ("P903232", "Larson", "Dark Magic");
+INSERT INTO Professors VALUES ("P905555", "Allsop", "Potions");
+INSERT INTO Headmaster VALUES ("Snape", "12-01-1992", "12-01-2050", 3);
+
+
