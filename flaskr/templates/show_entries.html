@@ -45,7 +45,7 @@
 
 <h3> Delete Student </h3>
     {% for row in rows %}
-        <li><h5>{{row.stuId }}</h5>
+        <li><h4>{{row.stuId }} &nbsp;-&nbsp;{{row.firstName}}</h4>
         <form action="{{ url_for('deleteStud') }}" method=post class=delete-stud>
         <input type=hidden value="{{row.stuId }}" name=studDelete></input>
         <input type=submit></input>

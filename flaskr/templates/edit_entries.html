@@ -1,26 +1,20 @@
 {% extends "layout.html" %}
 {% block body %}
   <ul class=entries>
-  {% for entry in entries %}
-    <li><a>{{entry.stuId }}</a>&nbsp;-&nbsp;{{ entry.firstName }}
-
-  {% endfor %}
-
+<h1> Time to edit </h1>
+<br>
  {% if session.logged_in %}
     <form action="{{ url_for('editStud') }}" method=post class=add-entry>
       <dl>
 	<dt> Student Id </dt>
 	{% for entry in entries %}
-	<dd><input type=radio name=stuId value="{{entry.stuId}}"> {{entry.stuId}}
-  	{% endfor %}
-        <dt>Last Name:
-        <dd><input type=text size=30 name=lastName>
-        <dt>First Name:
-        <dd><input type=text size=30 name=firstName>
-        <dt>GPA:
+	<dd><input type=radio name=stuId value="{{entry.stuId}}"> {{entry.stuId}} &nbsp;-&nbsp;{{ entry.firstName }}
+  	{% endfor %}      
+	<dt>GPA:
         <dd><input type=number step=any size=4 name=GPA>
-      <dt>Schedule:
+        <dt>Schedule:
         <dd><input type=text size=30 name=Schedule>
+	<br>
         <dd><input type=submit value=POST>
       </dl>
     </form>

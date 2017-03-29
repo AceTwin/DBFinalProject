@@ -149,8 +149,8 @@ def editStud():
     if request.method == 'POST':
         db = get_db()
 	student = request.form['stuId']
-        db.execute('update Student set lastName=?, firstName=?, GPA=?, Schedule=? where stuId=' + student,
-            [request.form['lastName'], request.form['firstName'], request.form['GPA'], request.form['Schedule']])
+        db.execute('update Student set GPA=?, Schedule=? where stuId=' + student,
+            [request.form['GPA'], request.form['Schedule']])
         db.commit()
         flash('Entry was successfully edited')
         return redirect(url_for('show_entries'))
