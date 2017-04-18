@@ -45,7 +45,7 @@ NumYears NUMBER(3));
 CREATE TABLE Grades (
 Semester VARCHAR2(20),
 GPA DECIMAL(3,2),
-stuId VARCHAR2(5),
+stuId NUMERIC(5),
 PRIMARY KEY (Semester, GPA),
 FOREIGN KEY(stuId) REFERENCES Students(stuId));
 
@@ -76,8 +76,37 @@ Season VARCHAR2(7));
 INSERT INTO Student VALUES (9876, "Potter", "Harry", 3.7, "Gryffindor", "MWF");
 INSERT INTO Student VALUES (7643, "Lovegood", "Luna", 3.87, "Ravenclaw", "MWTH");
 INSERT INTO Student VALUES (4536, "Cornel", "Cara", 3.9, "Gryffindor", "TWF");
+INSERT INTO Student VALUES (4785, "Granger", "Hermione", 4.0, "Gryffindor", "MWF");
+INSERT INTO Student VALUES (5252, "Weasley", "Ron", 3.2, "Gryffindor", "MW");
+INSERT INTO Student VALUES (9222, "Weasley", "George", 3.5, "Gryffindor", "MTW");
 INSERT INTO Professors VALUES ("P903232", "Larson", "Dark Magic");
-INSERT INTO Professors VALUES ("P905555", "Allsop", "Potions");
+INSERT INTO Professors VALUES ("P905555", "Alsop", "Transfiguration");
+INSERT INTO Professors VALUES ("P905567", "Harrison", "Potions");
 INSERT INTO Headmaster VALUES ("Snape", "12-01-1992", "12-01-2050", 3);
-
-
+INSERT INTO Classes VALUES ("Potions", "P905567", 5);
+INSERT INTO Classes VALUES ("Transfiguration", "P905555", 3);
+INSERT INTO Classes VALUES ("Dark Magic", "P903232", 4);
+INSERT INTO Room VALUES ("R3465", "Potions", "Good");
+INSERT INTO Room VALUES ("R5632", "Dark Magic", "Disrepair");
+INSERT INTO Room VALUES ("R3334", "Transfiguration", "Meh");
+INSERT INTO Grades VALUES ("Fall", 3.7, 9876);
+INSERT INTO Grades VALUES ("Winter", 3.87, 7643);
+INSERT INTO Grades VALUES ("Spring", 3.9, 4536);
+INSERT INTO Grades VALUES ("Fall",4.0, 4785);
+INSERT INTO Grades VALUES ("Winter", 3.2, 5252);
+INSERT INTO Grades VALUES ("Fall", 3.5, 9222);
+INSERT INTO Wand VALUES ("W5235", "Poor", "Wood", "Harry", "Potter");
+INSERT INTO Wand VALUES ("W5236", "Good", "Pine", "Luna", "Lovegood");
+INSERT INTO Wand VALUES ("W5237", "Meh", "Stone", "Cara", "Cornel");
+INSERT INTO Wand VALUES ("W5238", "Poor", "Wood", "Hermione", "Granger");
+INSERT INTO Wand VALUES ("W5239", "Destroyed", "Pine", "Ron", "Weasley");
+INSERT INTO Wand VALUES ("W5240", "Ok", "Stone", "George", "Weasley");
+INSERT INTO House VALUES ("GRIFF", "Lion", "WestTower");
+INSERT INTO House VALUES ("RAVEN", "Raven", "DownHall");
+INSERT INTO House VALUES ("SLYTH", "Snake", "Underground");
+INSERT INTO House VALUES ("HUFFLE", "Badger", "SomewhereElse");
+INSERT INTO ExtraCurricular VALUES ("Quiddich", "Fall");
+INSERT INTO ExtraCurricular VALUES ("Chess", "Winter");
+INSERT INTO Books VALUES ("Trannys", "Transfiguration", 200);
+INSERT INTO Books VALUES ("Blow shiz up", "Dark Magic", 200);
+INSERT INTO Books VALUES ("Drink me", "Potions", 200);

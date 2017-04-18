@@ -1,29 +1,40 @@
 {% extends "layout.html" %}
 {% block body %}
   {% if session.logged_in %}
+{% if session.admin %}
 <p>
     <a href="{{ url_for('editStud') }}" > Edit </a>
 </p>
+{% endif %}
 <table border = 1>
     <thread>
-        <td>Student Id</td>
-        <td>Last Name</td>
-        <td>First Name</td>
-        <td>GPA</td>
-        <td>House</td>
-        <td>Schedule</td>
+  {% if session.admin %}
+        <td><b>Student Id</b></td>
+  {% endif %}
+        <td><b>Last Name</b></td>
+        <td><b>First Name</b></td>
+  {% if session.admin %}
+        <td><b>GPA</b></td>
+  {% endif %}
+        <td><b>House</b></td>
+        <td><b>Schedule</b></td>
     </thread>
     {% for row in rows %}
         <tr>
+  {% if session.admin %}
             <td>{{row["stuId"]}}</td>
+  {% endif %}
             <td>{{row["lastName"]}}</td>
             <td> {{ row["firstName"]}}</td>
+  {% if session.admin %}
             <td>{{row['GPA']}}</td>
+  {% endif %}
             <td>{{row["House"]}}</td>
             <td> {{ row["Schedule"]}}</td>	
         </tr>
          {% endfor %}
       </table>
+  {% if session.admin %}
 <h3> Add Student </h3>
     <form action="{{ url_for('add_entry') }}" method=post class=add-entry>
       <dl>
@@ -51,7 +62,7 @@
         <input type=submit></input>
         </form>
     {% endfor %}
- 
+   {% endif %}
   {% endif %}
 {% endblock %}
 

@@ -1,11 +1,14 @@
 {% extends "layout.html" %}
 {% block body %}
   {% if session.logged_in %}
+<p>
+    <a href="{{ url_for('editProf') }}" > Edit </a>
+</p>
 <table border = 1>
     <thread>
-        <td>Professor Id</td>
-        <td>Name</td>
-        <td>Class Taught</td>
+        <td><b> Professor Id </b></td>
+        <td><b> Name </b></td>
+        <td><b> Class Taught </b></td>
     </thread>
     {% for row in rows %}
         <tr>
