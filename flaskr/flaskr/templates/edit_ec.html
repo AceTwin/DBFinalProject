@@ -1,0 +1,22 @@
+{% extends "layout.html" %}
+{% block body %}
+  <ul class=entries>
+<h1> Time to edit </h1>
+<br>
+ {% if session.logged_in %}
+    <form action="{{ url_for('editEC') }}" method=post class=add-entry>
+      <dl
+	<dt> Room Number </dt>
+	{% for entry in entries %}
+	<dd><input type=radio name=Clubs value="{{entry.Clubs}}"> {{entry.Clubs}} &nbsp;-&nbsp;{{ entry.Season }}
+  	{% endfor %}      
+	<dt>Club:
+        <dd><input type=text size=30 name=Clubs>
+	<dt>Season:
+        <dd><input type=text size=30 name=Season>
+	<br>
+        <dd><input type=submit value=POST>
+      </dl>
+    </form>
+  {% endif %}  
+{% endblock %}

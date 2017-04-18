@@ -1,0 +1,24 @@
+{% extends "layout.html" %}
+{% block body %}
+  {% if session.logged_in %}
+
+<table border = 1>
+    <thread>
+        <td><b> Wand ID </b></td>
+        <td><b> Wand Condition </b></td>
+        <td><b> Wand Core </b></td>
+	<td><b> First Name </b></td>
+        <td><b> Last Name</b></td>
+    </thread>
+    {% for row in rows %}
+        <tr>
+            <td>{{row["WandId"]}}</td>
+            <td>{{row["WCondition"]}}</td>
+            <td> {{ row["Core"]}}</td>
+	    <td> {{ row["StudFName"]}}</td>
+	    <td> {{ row["StudLName"]}}</td>	
+        </tr>
+         {% endfor %}
+      </table> 
+  {% endif %}
+{% endblock %}

@@ -1,0 +1,44 @@
+{% extends "layout.html" %}
+{% block body %}
+  {% if session.logged_in %}
+<p>
+    <a href="{{ url_for('editProf') }}" > Edit </a>
+</p>
+<table border = 1>
+    <thread>
+        <td><b> Professor Id </b></td>
+        <td><b> Name </b></td>
+        <td><b> Class Taught </b></td>
+    </thread>
+    {% for row in rows %}
+        <tr>
+            <td>{{row["ProfID"]}}</td>
+            <td>{{row["name"]}}</td>
+            <td> {{ row["subject"]}}</td>	
+        </tr>
+         {% endfor %}
+      </table>
+<h3> Add Professor </h3>
+    <form action="{{ url_for('add_prof') }}" method=post class=add-prof>
+      <dl>
+        <dt>Professor Id:
+        <dd><input type=text size=30 name=ProfID>
+        <dt>Name:
+        <dd><input type=text size=30 name=name>
+        <dt>Class Taught:
+        <dd><input type=text size=30 name=subject>
+        <dd><input type=submit value=Share>
+      </dl>
+    </form>
+
+<h3> Delete Professor </h3>
+    {% for row in rows %}
+        <li><h5>{{row.ProfID }}</h5>
+        <form action="{{ url_for('deleteProf') }}" method=post class=delete-prof>
+        <input type=hidden value="{{row.ProfID }}" name=profDelete></input>
+        <input type=submit></input>
+        </form>
+    {% endfor %}
+ 
+  {% endif %}
+{% endblock %}

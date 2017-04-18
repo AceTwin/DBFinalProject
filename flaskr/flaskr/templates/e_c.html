@@ -1,0 +1,39 @@
+{% extends "layout.html" %}
+{% block body %}
+  {% if session.logged_in %}
+<p>
+    <a href="{{ url_for('editEC') }}" > Edit </a>
+</p>
+<table border = 1>
+    <thread>
+        <td><b> Club </b></td>
+        <td><b> Season </b></td>
+    </thread>
+    {% for row in rows %}
+        <tr>
+            <td>{{row["Clubs"]}}</td>
+            <td>{{row["Season"]}}</td>	
+        </tr>
+         {% endfor %}
+      </table>
+<h3> Add Extra Curricular Activity </h3>
+    <form action="{{ url_for('add_EC') }}" method=post class=add-ec>
+      <dl>
+        <dt>Club:
+        <dd><input type=text size=30 name=Clubs>
+        <dt>Season:
+        <dd><input type=text size=30 name=Season>
+        <dd><input type=submit value=Share>
+      </dl>
+    </form>
+
+<h3> Delete Extra Curricular </h3>
+    {% for row in rows %}
+        <form action="{{ url_for('deleteEC') }}" method=post class=delete-ec>
+        <input type=hidden value="{{row.Clubs }}" name=ecDelete></input>
+        <input type=submit value=Delete-{{row.Clubs }}></input>
+        </form>
+    {% endfor %}
+ 
+  {% endif %}
+{% endblock %}

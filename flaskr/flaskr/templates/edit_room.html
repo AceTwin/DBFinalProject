@@ -1,0 +1,24 @@
+{% extends "layout.html" %}
+{% block body %}
+  <ul class=entries>
+<h1> Time to edit </h1>
+<br>
+ {% if session.logged_in %}
+    <form action="{{ url_for('editRoom') }}" method=post class=add-entry>
+      <dl
+	<dt> Room Number </dt>
+	{% for entry in entries %}
+	<dd><input type=radio name=RoomId value="{{entry.RoomId}}"> {{entry.RoomId}} &nbsp;-&nbsp;{{ entry.classTaught }}
+  	{% endfor %}      
+	<dt>Room Number:
+        <dd><input type=text size=30 name=RoomId>
+	<dt>Class Taught:
+        <dd><input type=text size=30 name=classTaught>
+	<dt>Room Condition:
+        <dd><input type=text size=30 name=Condition>
+	<br>
+        <dd><input type=submit value=POST>
+      </dl>
+    </form>
+  {% endif %}  
+{% endblock %}

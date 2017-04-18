@@ -1,0 +1,22 @@
+{% extends "layout.html" %}
+{% block body %}
+  {% if session.logged_in %}
+<p>
+    <a href="{{ url_for('editGrades') }}" > Edit </a>
+</p>
+<table border = 1>
+    <thread>
+        <td><b> Semester </b></td>
+        <td><b> GPA </b></td>
+        <td><b> Student ID </b></td>
+    </thread>
+    {% for row in rows %}
+        <tr>
+            <td>{{row["Semester"]}}</td>
+            <td>{{row["GPA"]}}</td>
+            <td> {{ row["stuId"]}}</td>	
+        </tr>
+         {% endfor %}
+      </table> 
+  {% endif %}
+{% endblock %}

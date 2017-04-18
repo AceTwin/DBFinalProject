@@ -1,0 +1,44 @@
+{% extends "layout.html" %}
+{% block body %}
+  {% if session.logged_in %}
+<p>
+    <a href="{{ url_for('editRoom') }}" > Edit </a>
+</p>
+<table border = 1>
+    <thread>
+        <td><b> Room Number </b></td>
+        <td><b> Class Taught </b></td>
+        <td><b> Room Condition </b></td>
+    </thread>
+    {% for row in rows %}
+        <tr>
+            <td>{{row["RoomId"]}}</td>
+            <td>{{row["classTaught"]}}</td>
+            <td> {{ row["Condition"]}}</td>	
+        </tr>
+         {% endfor %}
+      </table>
+<h3> Add Room </h3>
+    <form action="{{ url_for('add_room') }}" method=post class=add-room>
+      <dl>
+        <dt>Room Number:
+        <dd><input type=text size=30 name=RoomId>
+        <dt>Class Taught:
+        <dd><input type=text size=30 name=classTaught>
+        <dt>Room Condition:
+        <dd><input type=text size=30 name=Condition>
+        <dd><input type=submit value=Share>
+      </dl>
+    </form>
+
+<h3> Delete Room </h3>
+    {% for row in rows %}
+        <li><h5>{{row.RoomId }}</h5>
+        <form action="{{ url_for('deleteRoom') }}" method=post class=delete-room>
+        <input type=hidden value="{{row.RoomId }}" name=profRoom></input>
+        <input type=submit></input>
+        </form>
+    {% endfor %}
+ 
+  {% endif %}
+{% endblock %}

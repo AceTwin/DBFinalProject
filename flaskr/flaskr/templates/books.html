@@ -1,0 +1,43 @@
+{% extends "layout.html" %}
+{% block body %}
+  {% if session.logged_in %}
+
+<table border = 1>
+    <thread>
+        <td><b> Book Name </b></td>
+        <td><b> Class Needed For </b></td>
+        <td><b> Number of Pages </b></td>
+    </thread>
+    {% for row in rows %}
+        <tr>
+            <td>{{row["bID"]}}</td>
+            <td>{{row["classRequired"]}}</td>
+            <td> {{ row["NumPages"]}}</td>	
+        </tr>
+         {% endfor %}
+      </table>
+<h3> Add Book </h3>
+    <form action="{{ url_for('add_book') }}" method=post class=add-book>
+      <dl>
+        <dt>Book Name:
+        <dd><input type=text size=30 name=bID>
+        <dt>Class Needed For:
+        <dd><input type=text size=30 name=classRequired>
+        <dt>Number of Pages:
+        <dd><input type=number step=any size=30 name=NumPages>
+        <dd><input type=submit value=Share>
+      </dl>
+    </form>
+
+<h3> Delete a Book </h3>
+    {% for row in rows %}
+        <li><h5>{{row.bID }}</h5>
+        <form action="{{ url_for('deleteBook') }}" method=post class=delete-book>
+        <input type=hidden value="{{row.bID }}" name=bookDelete></input>
+        <input type=submit></input>
+        </form>
+    {% endfor %}
+ 
+  {% endif %}
+{% endblock %}
+
